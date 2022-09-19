@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Booking</title>
+    <!-- Fonts -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"> -->
+    <link rel="stylesheet" href="./dist/main.css">
+</head>
+<body class="antialiased">
+    <div class="main-container">
+        <button class="ar_lan btn-lan" data-lan="{{app()->getLocale()}}" type="button">
+           ar
+        </button>
+        <div class="flexCol main-dimension">
+            <!-- nav -->
+            <nav class="">
+                <div class="md:mt-8 flex justify-between items-center md:pt-8 sm:pt-0 sm:px-6 lg:px-8">
+                    <!-- logo -->
+                    <a href="/">
+                        <image src="./dist/images/logo-f7-ligth.svg" class="w-32 md:w-48 logo-img"/>
+                    </a>
+                    <!-- main nav -->
+                    <div class="hidden md:flex">
+                        <a class='x-nav-item nav-item' href="/" active="request()->routeIs('home')">Home</a>
+                        <div class='x-ddown-flex'>
+                            <a class='x-nav-item nav-item dropdownButton flex h-full' active="request()->is('*' . 'services' . '*')" class="dropdownButton flex h-full">
+                                <svg class='w-5 h-5 self-end order-2 icon' fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd">
+                                    </path>
+                                </svg>
+                                <span>services</span>
+                            </a>
+                            <div class='x-dropdown hidden'>
+                                <ul class="py-1" aria-labelledby="dropdownDividerButton">
+                                    <li>
+                                        <a class="x-ddown-item" href="./individual.html">
+                                            Individual desktop
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="x-ddown-item" href="./private.html">
+                                            Private desktop
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="x-ddown-item" href="./meeting.html">
+                                            Meeting Room
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a class='x-nav-item nav-item' href="./contact.html">contact us</a>
+                            <div class='x-ddown-flex'>
+                                <button class="dropdownButton uppercase text-base text-white rounded-full h-11 w-11 font-medium bg-indigo-600 hover:bg-indigo-700 focus:ring-1 focus:ring-indigo-300 dark:text-gray-200 dark:bg-indigo-900 dark:hover:bg-indigo-800" type="button">
+                                    fa
+                                    <!-- <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg> -->
+                                </button>
+                                <div class="dropdownDivider hidden x-dropdown">
+                                    <ul class="py-1" aria-labelledby="dropdownDividerButton">
+                                        <li>
+                                            <a class="x-ddown-item" href="/">
+                                                Dashboard
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="x-ddown-item" href="./profile.html">
+                                                Profile
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="x-ddown-item" href="./reservations.html">
+                                                Reservations
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <div class="py-1">
+                                        <form method="POST" action="/logout">
+                                            <button type="submit" class="text-sm hover:bg-gray-100 text-gray-700 w-full txt-align-unset block px-4 py-2 dark:text-gray-400 dark:hover:bg-gray-700">Logout</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#login-modal" class="py-2 hidden text-base px-4 text-white font-medium bg-indigo-600 hover:bg-indigo-700 dark:text-gray-200 dark:bg-indigo-900 dark:hover:bg-indigo-800">Log in</a>
+                    </div>
+                    <!-- humberger icon -->
+                    <div class="-mr-2 flex items-center md:hidden">
+                        <button type="button" class="mob-btn bg-gray-100 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-inset focus:ring-indigo-500 dark:bg-gray-900 dark:hover:bg-gray-900" aria-expanded="false">
+                            <span class="sr-only">Open main menu</span>
+                             <!-- Heroicon name: outline/menu -->
+                            <svg class="mob-btn h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <!-- mobile nav -->
+                <div class="mob-nav md:hidden absolute z-10 inset-x-0 p-2 transition transform origin-top-right">
+                    <div class="rounded-lg shadow-lg bg-gray-100 ring-2 ring-black ring-opacity-5 dark:bg-gray-800">
+                        <div class="px-5 pt-4 flex items-start justify-between">
+                            <div class="-mr-2 order-1">
+                                <button type="button" class="mob-btn bg-gray-100 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-inset focus:ring-indigo-500 dark:bg-gray-800 dark:hover:bg-gray-800">
+                                    <span class="sr-only">Close</span>
+                                    <!-- Heroicon name: outline/x -->
+                                    <svg class="mob-btn h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="flex flex-col px-2 flex-grow flex-shrink-0 pb-3 space-y-1">
+                                <a class='x-nav-item nav-item' href="/" active="request()->routeIs('home')">Home</a>
+                                <div class='x-ddown-flex'>
+                                    <a class='x-nav-item nav-item dropdownButton flex' active="request()->is('*' . 'services' . '*')">
+                                        <svg class='w-5 h-5 self-end order-2 icon' fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd">
+                                            </path>
+                                        </svg>
+                                        <span>services</span>
+                                    </a>
+                                    <div class='x-dropdown hidden dropdownDivider'>
+                                        <ul class="py-1" aria-labelledby="dropdownDividerButton">
+                                            <li>
+                                                <a class="x-ddown-item" href="./individual.html">
+                                                    Individual desktop
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="x-ddown-item" href="./private.html">
+                                                    Private desktop
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="x-ddown-item" href="./meeting.html">
+                                                    Meeting Room
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <a class='x-nav-item nav-item' href="/contact" active="request()->is('contact')">contact us</a>
+                                </div>
+                                <a href="#login-modal" class="py-2 text-base px-4 text-white font-medium bg-indigo-600 hover:bg-indigo-700 dark:text-gray-200 dark:bg-indigo-900 dark:hover:bg-indigo-800">Log in</a>
+                            </div>
+                        <div class='x-ddown-flex items-end'>
+                            <button class="dropdownButton uppercase text-base text-white rounded-full h-11 w-11 font-medium bg-indigo-600 hover:bg-indigo-700 focus:ring-1 focus:ring-indigo-300 dark:text-gray-200 dark:bg-indigo-900 dark:hover:bg-indigo-800" type="button">
+                                <!-- <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg> -->
+                                fa
+                            </button>
+                            <div class='x-dropdown hidden dropdownDivider' auth="true">
+                                <ul class="py-1" aria-labelledby="dropdownDividerButton">
+                                    <li>
+                                        <a class="x-ddown-item" href="/">
+                                            Dashboard
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="x-ddown-item" href="./profile.html">
+                                            Profile
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="x-ddown-item" href="reservations.html">
+                                            Reservations
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="py-1">
+                                    <form method="POST" action="/logout">
+                                        <button type="submit" class="text-sm hover:bg-gray-100 text-gray-700 w-full txt-align-unset block px-4 py-2 dark:text-gray-400 dark:hover:bg-gray-700">Logout</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <!-- @include('_headerNav') -->
+            <!-- main content -->
+            <div class="flexCol main-content">
+               <!-- {{$slot}} -->
+               <!-- hero section -->
+               <div class="hero grid grid-cols-1 mb-8 md:grid-cols-2">
+                    <div class="flex flex-col justify-center">
+                        <div class="flex items-center">
+                            <div class="text-lg leading-7 font-semibold">
+                                <p class="mb-4 text-gray-600 dark:text-gray-400 sm:text-lg md:text-xl">Book a space in a simple way to </p>
+                                <a href="" class="mt-4 text-4xl sm:text-5xl md:text-6xl text-gray-900 dark:text-gray-100">Step to new level.</a>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <p class="mt-2 text-gray-600 dark:text-gray-400 sm:text-lg md:text-xl">
+                                A better way to find a perfect space for you to study, work, and increase your productivity to make a huge progress on your field of work.
+                            </p>
+                        </div>
+                        <div class="md:self-center flex mt-8">
+                                <a href="./individual.html" class="md:py-4 text-center md:text-lg md:px-10 text-white font-medium py-3 px-8 bg-indigo-600 hover:bg-indigo-700">Individual Desks</a>
+                                <a href="./meeting.html" class="md:py-4 text-center md:text-lg md:px-10 text-indigo-700 font-medium py-3 px-8 bg-indigo-200 hover:bg-indigo-300">Meeting Rooms</a>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-center my-8">
+                        <image src="./dist/images/hero-img-3.svg"/>
+                    </div>
+                </div>
+                <!-- goals section -->
+                <div class="why bg-dotted my-8 grid grid-cols-1 md:grid-cols-1">
+                        <div class="flex flex-wrap items-center justify-between pt-8 my-14">
+                            <div class="card p-2 mb-3 w-full lg:w-1/3 flex flex-col space-y-8">
+                                <div class="card-header flex flex-col text-center items-center justify-center">
+                                    <!-- <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clip-rule="evenodd"></path></svg> -->
+                                    <image src="./dist/images/idea.svg" class="slide-img h-16" alt=""/>
+                                    <h4 class=" mt-2 text-lg font-medium text-gray-900 dark:text-white">Creative Environment</h4>
+                                    <p class="mt-2 text-gray-600 dark:text-gray-400 text-base">
+                                       Provide a creative Environment for you, and your co-workers.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card p-2 mb-3 w-full lg:w-1/3 flex flex-col space-y-8">
+                                <div class="card-header flex flex-col text-center items-center justify-center">
+                                    <!-- <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"></path></svg> -->
+                                    <image src="./dist/images/chart.svg" alt="" class="slide-img h-16"/>
+                                    <h4 class=" mt-2 text-lg font-medium text-gray-900 dark:text-white">Increase Productivity</h4>
+                                    <p class="mt-2 text-gray-600 dark:text-gray-400 text-base">
+                                        Get the best places to increase your productivity.</p>
+                                </div>
+                            </div>
+                            <div class="card p-2 mb-3 w-full lg:w-1/3 flex flex-col space-y-8">
+                                <div class="card-header flex flex-col text-center items-center justify-center">
+                                    <!-- <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> -->
+                                    <image src="./dist/images/start.svg" alt="" class="slide-img h-16"/>
+                                    <h4 class=" mt-2 text-lg font-medium text-gray-900 dark:text-white">Reach Professionalism</h4>
+                                    <p class="mt-2 text-gray-600 dark:text-gray-400 text-base">
+                                    Achieve your goals with professionalism and creativity.</p>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <!-- sevicies section -->
+                <div class="services my-8 grid grid-cols-1 md:grid-cols-1">
+                    <div class="md:w-2/4 text-center justify-self-center flex flex-col justify-center">
+                        <div class="">
+                            <div class="text-lg leading-7 font-semibold">
+                                <a href="" class="mt-4 text-2xl sm:text-3xl md:text-4xl text-gray-900 dark:text-white">Our Services</a>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <p class="mt-2 text-gray-600 dark:text-gray-400 sm:text-lg md:text-xl">
+                            Space Booking is an online booking platform that allows users to rent inspiring meeting rooms, impressive private office or shared spaces in just a few clicks.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- first way cards -->
+                    <div class="mt-12 gap-8 hero grid grid-cols-1 md:grid-cols-2">
+                        <div class="flex flex-col justify-between">
+                            <div class="flex flex-col items-center">
+                                <div class="mb-6 text-lg leading-7 font-semibold">
+                                    <a href="" class="outline-txt mt-4 text-4xl sm:text-5xl md:text-7xl text-gray-900 dark:text-white">Easy, quick, cheap</a>
+                                </div>
+                                <p class="mt-4 text-base mt-2 text-gray-600 dark:text-gray-400 md:text-lg">
+                                   Whether you have a company, employees worikng remotly, or you are freelancer, student, or just want to develope you'r talent.
+                                </p>
+                                <p class="mt-4 text-base mt-2 text-gray-600 dark:text-gray-400 md:text-lg">
+                                   We offer inspiring meeting rooms, offices, and shared spaces for you. you have just to find you'r perfect sapce, book it and activate your booking by visiting our building.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap items-center justify-center my-8">
+                            <div class="card mb-16 w-1/2 flex flex-col space-y-4">
+                                <div style="background-image:url('./dist/images/shared.svg')" class="slide-img row-start-1 col-start-1 col-span-2 bg-contain bg-no-repeat bg-center h-16 w-16"></div>
+                                <a href="./individual.html" class="text-base font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-500">Shared Spaces</a>
+                                <p class="text-gray-600 dark:text-gray-400 text-base">Book a space in a room filed with desks</p>
+                            </div>
+                            <div class="card mb-16 w-1/2 flex flex-col space-y-4">
+                                <div style="background-image:url('./dist/images/worker.png')" class="slide-img row-start-1 col-start-1 col-span-2 bg-contain bg-no-repeat bg-center h-16 w-16"></div>
+                                <a href="./private.html" class="text-base font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-500">Single Space</a>
+                                <p class="text-gray-600 dark:text-gray-400 text-base">Book a private office for your company.</p>
+                            </div>
+                            <div class="card mb-16 w-1/2 flex flex-col space-y-4">
+                                <div style="background-image:url('./dist/images/mt.png')" class="slide-img row-start-1 col-start-1 col-span-2 bg-contain bg-no-repeat bg-center h-16 w-16"></div>
+                                <a href="./meeting.html" class="text-base font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-500">Meeting Rooms</a>
+                                <p class="text-gray-600 dark:text-gray-400 text-base">Book a private meeting room for your meetings.</p>
+                            </div>
+                            <div class="card mb-16 w-1/2 flex flex-col space-y-4">
+                                <div style="background-image:url('./dist/images/otherserv.svg')" class="slide-img row-start-1 col-start-1 col-span-2 bg-contain bg-no-repeat bg-center h-16 w-16"></div>
+                                <a href="" class="text-base font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-500">Other Services</a>
+                                <p class="text-gray-600 dark:text-gray-400 text-base">For future expansion get your extra custom Service.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- contact section -->
+                <div class="contact bg-contact py-16 mb-16 grid grid-cols-1 md:grid-cols-2" style="background-image:url(./dist/images/pg1.svg),url(./dist/images/pg2.svg),url(./dist/images/pg3.svg),url(./dist/images/pg4.svg),url(./dist/images/pg6.svg),url(./dist/images/pg7.svg)">
+                    <div class="md:w-4/5 md:mb-0 mb-8 justify-self-end flex flex-col justify-center">
+                        <h2 class="text-base font-medium text-2xl text-gray-900 dark:text-white">Contact Us</h2>
+                        <p class="mt-6 text-base font-medium text-gray-600 dark:text-gray-400 sm:text-lg md:text-lg">We are here to help and answer any question you might have we look for ward to hearing from you</p>
+                    </div>
+                    <div class="justify-self-center flex flex-col justify-center">
+                        <ul class="flex flex-col space-y-8">
+                            <li class="flex space-x-3">
+                                <span class="mx-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                    </svg>
+                                </span>
+                                <span class="text-base font-medium text-gray-600 dark:text-gray-400">Make a call:</span>
+                                <span class="text-base font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-500">+95474521154541</span>
+                            </li>
+                            <li class="flex space-x-3">
+                                <span class="mx-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                </span>
+                                <span class="text-base font-medium text-gray-600 dark:text-gray-400">Visit Us:</span>
+                                <span class="text-base font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-500">Syria - Damascus - Street</span>
+                            </li>
+                            <li class="flex space-x-3">
+                                <span class="mx-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 19v-8.93a2 2 0 01.89-1.664l7-4.666a2 2 0 012.22 0l7 4.666A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-1.14.76a2 2 0 01-2.22 0l-1.14-.76" />
+                                    </svg>
+                                </span>
+                                <span class="text-base font-medium text-gray-600 dark:text-gray-400">Our Email:</span>
+                                <span class="text-base font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-500">spacebooking@co.mail<span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- footer -->
+            <div class="footer">
+                <div class="text-center text-sm text-gray-500 sm:text-left dark:text-gray-400">
+                    <div class="flex items-center">
+                        <!-- <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" class="-mt-px w-5 h-5 text-gray-400">
+                            <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg> -->
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1.03em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 250"><path d="M128.001 0C57.317 0 0 57.307 0 128.001c0 56.554 36.676 104.535 87.535 121.46c6.397 1.185 8.746-2.777 8.746-6.158c0-3.052-.12-13.135-.174-23.83c-35.61 7.742-43.124-15.103-43.124-15.103c-5.823-14.795-14.213-18.73-14.213-18.73c-11.613-7.944.876-7.78.876-7.78c12.853.902 19.621 13.19 19.621 13.19c11.417 19.568 29.945 13.911 37.249 10.64c1.149-8.272 4.466-13.92 8.127-17.116c-28.431-3.236-58.318-14.212-58.318-63.258c0-13.975 5-25.394 13.188-34.358c-1.329-3.224-5.71-16.242 1.24-33.874c0 0 10.749-3.44 35.21 13.121c10.21-2.836 21.16-4.258 32.038-4.307c10.878.049 21.837 1.47 32.066 4.307c24.431-16.56 35.165-13.12 35.165-13.12c6.967 17.63 2.584 30.65 1.255 33.873c8.207 8.964 13.173 20.383 13.173 34.358c0 49.163-29.944 59.988-58.447 63.157c4.591 3.972 8.682 11.762 8.682 23.704c0 17.126-.148 30.91-.148 35.126c0 3.407 2.304 7.398 8.792 6.14C219.37 232.5 256 184.537 256 128.002C256 57.307 198.691 0 128.001 0zm-80.06 182.34c-.282.636-1.283.827-2.194.39c-.929-.417-1.45-1.284-1.15-1.922c.276-.655 1.279-.838 2.205-.399c.93.418 1.46 1.293 1.139 1.931zm6.296 5.618c-.61.566-1.804.303-2.614-.591c-.837-.892-.994-2.086-.375-2.66c.63-.566 1.787-.301 2.626.591c.838.903 1 2.088.363 2.66zm4.32 7.188c-.785.545-2.067.034-2.86-1.104c-.784-1.138-.784-2.503.017-3.05c.795-.547 2.058-.055 2.861 1.075c.782 1.157.782 2.522-.019 3.08zm7.304 8.325c-.701.774-2.196.566-3.29-.49c-1.119-1.032-1.43-2.496-.726-3.27c.71-.776 2.213-.558 3.315.49c1.11 1.03 1.45 2.505.701 3.27zm9.442 2.81c-.31 1.003-1.75 1.459-3.199 1.033c-1.448-.439-2.395-1.613-2.103-2.626c.301-1.01 1.747-1.484 3.207-1.028c1.446.436 2.396 1.602 2.095 2.622zm10.744 1.193c.036 1.055-1.193 1.93-2.715 1.95c-1.53.034-2.769-.82-2.786-1.86c0-1.065 1.202-1.932 2.733-1.958c1.522-.03 2.768.818 2.768 1.868zm10.555-.405c.182 1.03-.875 2.088-2.387 2.37c-1.485.271-2.861-.365-3.05-1.386c-.184-1.056.893-2.114 2.376-2.387c1.514-.263 2.868.356 3.061 1.403z" fill="currentColor"/></svg>
+
+                        <a href="https://github.com/baraah-arar/flexible_booking" target='_blank' rel="noreferrer noopener" class="mx-2 underline">
+                            Project Code
+                        </a>
+
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="-mt-px w-5 h-5 text-gray-400">
+                            <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                        </svg>
+
+                        <!-- <a href="https://github.com/sponsors/taylorotwell" class="ml-1 underline">
+                            Sponsor
+                        </a> -->
+                    </div>
+                </div>
+
+                <div class="ml-4 sm:mt-4 md:mt-0  text-center text-sm text-gray-500 sm:text-right sm:ml-0 dark:text-gray-400">
+                    Developed by: Fatima.ma, Baraah.ar, Abd Alrahman.da
+                </div>
+            </div>
+        </div>
+        <!-- flash message with sessions -->
+    </div>
+    <!-- register modal -->
+    <!-- <x-register-modal/> -->
+    <div class="overlay hidden flex items-center justify-center fixed inset-0 w-screen min-h-screen bg-opacity-80 bg-gray-700" id="register">
+        <a href="#" class="cancel"></a>
+        <div class="modal flex flex-col overflow-auto max-h-screen space-y-8 rounded md:w-3/5 w-11/12 bg-gray-200 p-8 dark:bg-gray-900 dark:text-gray-200">
+            <div class="modal-header flex justify-between">
+                <h1 class="text-lg leading-6 font-medium text-gray-900 dark:text-gray-200">We are happy for joining us</h1>
+                <button class="close close_modal text-xl">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="text-sm text-gray-500">welcome to our community, please Enter your Information.</p>
+                 <form class="mt-8 space-y-6" action="/register" method="POST">
+                    <!-- @csrf -->
+                    <input type="hidden" name="remember" value="true">
+                    <div class="rounded-md shadow-sm">
+                        <div class="flex flex-col mb-4 space-y-2">  <!--space-y-2-->
+                            <label for="f_name" class="sr-only">First Name</label>
+                            <label for="f_name" class="">First Name</label>
+                            <input id="f_name" name="f_name" type="text" required class="appearance-none rounded-none relative block h-12 w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm dark:bg-gray-800 dark:text-gray-400" placeholder="First Name">
+                        </div>
+                        <div class="flex flex-col mb-4 space-y-2">  <!--space-y-2-->
+                            <label for="l_name" class="sr-only">Last Name</label>
+                            <label for="l_name" class="">Last Name</label>
+                            <input id="l_name" name="l_name" type="text" required class="appearance-none rounded-none relative block h-12 w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm dark:bg-gray-800 dark:text-gray-400" placeholder="Last Name">
+                        </div>
+                        <div class="flex flex-col mb-4 space-y-2">  <!--space-y-2-->
+                            <label for="phone" class="sr-only">Phone Number</label>
+                            <label for="phone" class="">Phone Number</label>
+                            <input id="phone" name="phone" type="text" required class="appearance-none rounded-none relative block h-12 w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm dark:bg-gray-800 dark:text-gray-400" placeholder="Phone Number">
+                        </div>
+                        <div class="flex flex-col mb-4 space-y-2">  <!--space-y-2-->
+                            <label for="email" class="sr-only">email</label>
+                            <label for="email" class="">Email</label>
+                            <input id="email" name="email" type="email" required class="appearance-none rounded-none relative block h-12 w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm dark:bg-gray-800 dark:text-gray-400" placeholder="Email">
+                        </div>
+                        <div class="flex flex-col mb-4 space-y-2">  <!--space-y-2-->
+                            <label for="password" class="sr-only">password</label>
+                            <label for="password" class="">Password</label>
+                            <input id="password" name="password" type="password" required class="appearance-none rounded-none relative block h-12 w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm dark:bg-gray-800 dark:text-gray-400" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="flex justify-center">
+                        <button type="submit" class="group relative h-12 w-1/2 flex items-center justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                            <!-- Heroicon name: solid/lock-closed -->
+                                <svg class="h-5 w-5 text-indigo-400 group-hover:text-indigo-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                                </svg>
+                            </span>
+                            Register
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer flex justify-center items-center space-x-2 border-t border-gray-300 py-4">
+                <p class="text-sm text-gray-500">Or you already have account</p>
+                <a href='#login-modal' class="font-medium text-indigo-600 hover:text-indigo-500">Login Now</a>
+            </div>
+        </div>
+    </div>
+    <!-- login modal -->
+    <div class="overlay hidden flex items-center justify-center fixed inset-0 w-screen min-h-screen bg-opacity-80 bg-gray-700" id="login-modal">
+        <a href="#" class="cancel"></a>
+        <div class="modal flex flex-col overflow-auto max-h-screen space-y-8 rounded md:w-3/5 w-11/12 bg-gray-200 p-8 dark:bg-gray-900 dark:text-gray-200">
+            <div class="modal-header flex justify-between">
+                <h1 class="text-lg leading-6 font-medium text-gray-900 dark:text-gray-200">Welcome back</h1>
+                <button class="close close_modal text-xl">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="text-sm text-gray-500">welcome one more time, please Enter your Information.</p>
+                 <form class="mt-8 space-y-6" action="/login" method="POST">
+                    <!-- @csrf -->
+                    <input type="hidden" name="remember" value="true">
+                    <div class="rounded-md shadow-sm -space-y-px">
+                        <div class="flex flex-col mb-4 space-y-2">  <!--space-y-2-->
+                            <label for="email" class="sr-only">email</label>
+                            <label for="email" class="">Email</label>
+                            <input id="email" name="email" type="email" required class="appearance-none rounded-none relative block h-12 w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm dark:bg-gray-800 dark:text-gray-400" placeholder="Email">
+                        </div>
+                        <div class="flex flex-col mb-4 space-y-2">  <!--space-y-2-->
+                            <label for="password" class="sr-only">password</label>
+                            <label for="password" class="">Password</label>
+                            <input id="password" name="password" type="password" required class="appearance-none rounded-none relative block h-12 w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm dark:bg-gray-800 dark:text-gray-400" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="flex flex-col">
+                        <div class="text-sm self-end">
+                            <a href="/forget-password" class="font-medium text-indigo-600 hover:text-indigo-500">
+                                Forgot your password?
+                            </a>
+                        </div>
+                    </div>
+                    <div class="flex justify-center">
+                        <button type="submit" class="group relative h-12 w-1/2 flex items-center justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                            <!-- Heroicon name: solid/lock-closed -->
+                                <svg class="h-5 w-5 text-indigo-400 group-hover:text-indigo-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                                </svg>
+                            </span>
+                            Login
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer flex justify-center items-center space-x-2 border-t border-gray-300 py-4">
+                <p class="text-sm text-gray-500">Or you don't have account</p>
+                <a href='#register' class="font-medium text-indigo-600 hover:text-indigo-500">Register Now</a>
+            </div>
+        </div>
+    </div>
+    <!-- <x-login-modal/> -->
+    <!-- calendar modal -->
+    <div class="overlay hidden flex items-center justify-center fixed inset-0 w-screen min-h-screen bg-opacity-80 bg-gray-700" id="calendar-overlay">
+        <!-- <a href="#" class="cancel"></a> -->
+        <div class="modal flex flex-col overflow-auto max-h-screen space-y-8 rounded md:w-3/5 w-11/12 bg-gray-200 p-8 dark:bg-gray-900 dark:text-gray-200">
+            <div class="modal-header flex justify-between">
+                <h1 class="text-lg leading-6 font-medium text-gray-900 dark:text-gray-200">Click to set start & end time for your reservation</h1>
+                <button class="close close_calendar text-xl">&times;</button>
+            </div>
+            <div class="calendar_cont flex flex-col">
+                <div class="calendar_form mt-8 flex flex-col items-center justify-center">
+                    <form action="{{$action}}" method="put" class="flex items-center justify-center  dark:text-gray-400">
+                        <div class="flex items-center justify-center mx-2">
+                            <label for="date-from" class="sr-only">from</label>
+                            <label for="date-from" class="p-4 w-1/5">from</label>
+                            <input type="text" readonly="readonly" vlaue="" name="start_date" id="checkIn" class="input-date-focus appearance-none rounded-none relative block h-10 w-full px-3 py-2 border-b border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md bg-transparent focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm dark:text-gray-400">
+                            <svg class="svg-date-focus w-8 h-10 border-b border-gray-300 text-gray-600 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+                        </div>
+                         <div class="flex items-center justify-center mx-2">
+                            <label for="checkOut" class="sr-only">to</label>
+                            <label for="checkOut" class="p-4 w-1/5">to</label>
+                            <input type="text" readonly="readonly" vlaue="" name="end_date" id="checkOut" class="input-date-focus appearance-none rounded-none relative block h-10 w-full px-3 py-2 border-b border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md bg-transparent focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm dark:text-gray-400">
+                            <svg class="svg-date-focus w-8 h-10 border-b border-gray-300 text-gray-600 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+                        </div>
+                        <button type="button" value="Book" class="calender_btn mx-2 self-end py-2 px-2 cursor-pointer inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Check Time</button>
+                    </form>
+                    <div class="error_message text-slate-400 dark:text-slate-500 text-xs font-medium"></div>
+                </div>
+                <div class="calendar_head flex items-center justify-center mt-8">
+                    <button class="before action_date" data-type='prevMonth' value="">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M15.707 15.707a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 010 1.414zm-6 0a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 1.414L5.414 10l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg>
+                    </button>
+                    <button class="before action_date  mx-2" data-type='prevWeek' value="">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                    </button>
+                    <h3 class="date mx-4">Month 2021</h3>
+                    <button class="next action_date mx-2" data-type='nextWeek' value="">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    </button>
+                    <button class="next action_date" data-type='nextMonth' value="">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd"></path><path fill-rule="evenodd" d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    </button>
+                </div>
+                <div class="calendar text-center">
+                    <div class="empty"></div>
+                </div>
+                <button class="close mx-2 self-end py-2 px-2 cursor-pointer inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Ok
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- extra service modal -->
+    <div class="overlay hidden flex items-center justify-center fixed inset-0 w-screen min-h-screen bg-opacity-80 bg-gray-700" id="xtras-overlay">
+        <!-- <a href="#" class="cancel"></a> -->
+        <div class="modal flex flex-col overflow-auto max-h-screen space-y-8 rounded md:w-3/5 w-11/12 bg-gray-200 p-8 dark:bg-gray-900 dark:text-gray-200">
+            <div class="modal-header flex justify-between">
+                <h1 class="text-lg leading-6 font-medium text-gray-900 dark:text-gray-200">Pick any service you want</h1>
+                <button class="close close_modal text-xl">&times;</button>
+            </div>
+            <div class="flex flex-wrap">
+                    <h3 class="hidden">No Services Available.</h3>
+                    <a class="extra_elem w-nm lg:w-full m-2 shadow-lg border-2 border-transparent hover:border-indigo-300 hover:shadow dark:hover:border-indigo-900 dark:shadow-gray-800" data-extraId="{{$service->id}}" data-name="{{$service->name}}">
+                        <div class="flex cursor-pointer items-center justify-between h-full lg:flex-row flex-col p-4 dark:text-gray-400">            
+                            <div class="flex items-center min-w-max min-h-max w-32 h-28 lg:w-48 lg:h-28">
+                                <!-- <svg class="w-32 h-16 lg:w-48 lg:h-20" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2h-2.22l.123.489.804.804A1 1 0 0113 18H7a1 1 0 01-.707-1.707l.804-.804L7.22 15H5a2 2 0 01-2-2V5zm5.771 7H5V5h10v7H8.771z" clip-rule="evenodd"></path></svg> -->
+                                <img src="./dist/images/coffee.svg" alt="" class="w-32 h-24 lg:w-40 lg:h-20">
+                            </div>
+                            <div class="text-sm grow flex flex-col mx-2">
+                                <h1 class="font-medium dark:text-gray-300">service name</h1>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                                    Ea laborum sapiente architecto vitae obcaecati tenetur
+                                </p>
+                            </div>
+                            <div class="self-end font-medium min-w-max dark:text-gray-300">
+                                <span>Price: </span> service price S.P
+                            </div>
+                        </div>
+                    </a>   
+                    <div class="model-foter flex items-center justify-end w-full mt-4">
+                        <a class="book_extra_btn order-2 w-48 cursor-pointer inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Book Selected Services
+                        </a>                     
+                    </div> 
+                </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        // toggling
+        window.addEventListener('click', (e) => {
+            // change language
+            if(e.target.classList.contains('ar_lan')){
+                document.querySelector('body').classList.toggle('dirrtl');
+                (e.target.innerText === 'ar')? e.target.innerText = 'en' : e.target.innerText = 'ar';
+            }
+            // toogle mob nav
+            if(e.target.classList.contains('mob-btn')){
+                const mob_nav = document.querySelector('.mob-nav');
+                mob_nav.classList.toggle('hidden');
+            }
+            // toggle dropdown
+            const dropdown_items = document.querySelectorAll('.dropdownButton');
+            [...dropdown_items].map(btn => {
+                if(e.target.classList.contains('dropdownButton') && btn === e.target  || btn === checkParents(e.target,'dropdownButton')){
+                    const drop_div = btn.nextElementSibling ;
+                    drop_div.classList.toggle('hidden');
+                    btn.classList.toggle('open');
+                    btn.querySelector('.icon') && btn.querySelector('.icon').classList.toggle('animate');
+                }
+                else if(btn !== e.target && btn.classList.contains('open')){
+                    const drop_div = btn.nextElementSibling;
+                    btn.classList.remove('open');
+                    !drop_div.classList.contains('hidden') && drop_div.classList.add('hidden');
+                }
+            });
+            // toggling overlay modals on close click
+            if(e.target.classList.contains('close_modal')){
+                if(window.location.href.indexOf('modal')>-1) history.back();
+                else checkParents(e.target, 'overlay').classList.toggle('hidden');
+            }
+        });
+        // check parents
+        function checkParents(elem, elemClass){
+            while(elem.parentElement){
+                if(elem.parentElement.classList.contains(`${elemClass}`)) {
+                    return elem.parentElement;
+                }
+                elem = elem.parentElement;
+            }
+        }
+
+        // on scroll animation -2- intersection observer
+        const sliderImages = document.querySelectorAll('.slide-img');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                console.log(entry);
+                if(entry.intersectionRatio > 0)
+                    entry.target.classList.add('active');
+                else
+                    entry.target.classList.remove('active');
+            })
+        });
+
+        sliderImages.forEach(elem => {
+            observer.observe(elem);
+        });
+        if(document.querySelector('.flash-msg .close')){
+            document.querySelector('.flash-msg .close').addEventListener('click',(e)=>{
+                e.target.parentElement.classList.add('hidden');
+            })
+        }
+    </script>
+    <!-- calendar script -->
+    <script src="./calender.js"></script>
+</body>
+</html>

@@ -1,0 +1,372 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--color-primary: #818cf8;
+	--bg-dark: #111828;
+};
+
+@layer components {
+    .dirrtl{
+        direction: rtl;
+    }
+    
+    .dirrtl #calendar-overlay .action_date{
+        transform: rotate(180deg);
+    }
+
+    .overlay.hidden:target{
+        display: flex;
+    }
+    
+    .overlay{
+        z-index: 10000;
+    }
+
+    input{
+        @apply dark:bg-gray-900;
+    }
+
+    /* body{
+        @apply dark:text-gray-400;
+    } */
+
+    .main-container{
+        @apply relative flex justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center px-4 md:px-0 py-8 md:pt-0;
+    }
+    .btn-lan{
+        @apply self-start absolute left-0 right-0 mt-40 text-base text-white h-8 w-8 font-medium bg-indigo-600 hover:bg-indigo-700 focus:ring-1 focus:ring-indigo-300 dark:bg-indigo-900 dark:hover:bg-indigo-800 dark:text-gray-200;
+    }
+    .flexCol{
+        @apply flex flex-col;
+    }
+    .main-dimension{
+        @apply min-h-screen w-4/5 max-w-6xl mx-auto;
+    }
+    .main-content{
+        @apply items-center mt-12 md:mt-8 flex-shrink-0 flex-grow overflow-hidden sm:px-6 lg:px-8 dark:bg-gray-900 dark:text-gray-400; 
+    }
+    .footer{
+        @apply flexCol md:flex-row justify-center mt-4 items-center sm:justify-between sm:px-6 lg:px-8;
+    }
+    .x-nav-item{
+        @apply mx-2 px-3 py-2 relative cursor-pointer text-base font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-500;
+    }
+    .x-ddown-flex{
+        @apply flex flex-col md:items-center relative;
+    }
+    .x-dropdown{
+        @apply absolute mt-12 bg-white text-base z-10 list-none divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-800 dark:divide-gray-700;
+    }
+    .x-ddown-item{
+        @apply text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2 dark:text-gray-400 dark:hover:bg-gray-700;
+    }
+
+    .txt-align-unset{
+        text-align: unset;
+    }
+    .editSUserInfo.disable .submitEdit{
+        @apply cursor-not-allowed bg-gray-600 hover:bg-gray-600 focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-gray-600
+    }
+
+    .cancel_form_btn{
+        @apply cursor-pointer inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium text-gray-600 hover:text-gray-700 bg-gray-300 hover:bg-gray-400 dark:text-gray-400 dark:hover:text-gray-400 dark:bg-gray-600 dark:hover:bg-gray-700;
+    }
+
+    .cancel_extra_btn{
+        @apply mx-2 cursor-pointer inline-flex justify-center border border-transparent text-2xl font-medium text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300;
+    }
+
+    .extar-service-div{
+        @apply border-indigo-300 border-b-2 shadow rounded-xl my-2 p-2 flex w-full justify-between items-center dark:border-gray-800 dark:shadow-gray-800;
+    }
+
+    .w-nm{
+        width: calc(50% - 1rem);
+    }
+
+    .extra_elem{
+       @apply lg:w-full m-2 shadow-lg border-2 border-transparent hover:border-indigo-300 hover:shadow dark:hover:border-indigo-900 dark:shadow-gray-800
+    }
+
+    .extras-selected{
+        @apply border-indigo-300 shadow dark:border-indigo-900
+    }
+    
+    .booked{
+        @apply border-indigo-300 shadow dark:border-indigo-900
+    }
+    
+    .noselected-msg{
+        display:inline-flex;
+        align-items: center;
+        @apply w-full text-gray-500 font-medium text-lg 
+    }
+    
+    .booked-extra{
+        @apply w-max border-indigo-300 border-b-2 shadow-lg rounded-xl my-2 p-2 dark:border-gray-700 dark:border-gray-700
+    }
+    
+    .doneRefresh {
+        @apply cursor-pointer bg-indigo-400 rounded-lg p-2 text-center text-gray-100 dark:text-indigo-900 text-lg font-medium
+    }
+
+    /* btn basic */
+    .book{
+        @apply mt-6 self-end py-2 px-6 cursor-pointer inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+    }
+
+    .disableBook{
+        @apply cursor-not-allowed bg-gray-600 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-gray-500
+    }
+
+    .x-nav-item:before{
+        content: '';
+        width: 0;
+        height: 2px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        @apply bg-gray-700 dark:bg-gray-500;
+        transition: all 0.3s ease-in;
+        transform-origin: right;
+    }
+    nav .nav-item:hover::before, nav .nav-item.active::before {
+        width: 100%;
+    }
+
+    .slide-img{
+        transition: all 1.5s ease;
+        opacity: 0;;
+    }
+    
+    .slide-img.active{
+        transform: translateY(0%) scale(1);
+        opacity: 1;
+    }
+    
+    .slide-img{
+        transform: translateY(100%) scale(0.90);
+        opacity: 0;
+    }
+
+    .bg-dotted, .bg-dotted-lg{
+        position: relative;
+        z-index: 1;
+    }
+    
+    .bg-dotted:before, .bg-dotted-lg:before{
+        content:'';
+        position: absolute;
+        justify-self: end;
+        background-image: radial-gradient(#a4a4a4 10%, transparent 0), radial-gradient(#a4a4a4 10%, transparent 0);
+        background-size: 8px 9px;
+        background-position: 11px 13px, 0px 6px;
+    }
+    
+    .bg-dotted:before{
+        top:0;
+        width:42%;
+        height: 7%;
+    }
+
+    @screen lg{
+        .bg-dotted:before{
+            width:32%;
+            height: 15%;
+        } 
+    }
+    
+    .bg-dotted-lg:before{
+        bottom: -15px;
+        left: -40px;
+        right: -40px;
+        width: 70%;
+        height: 16%;
+        z-index: 0;
+        background-image: radial-gradient(#a5b4fc 10%, transparent 0), radial-gradient(#a5b4fc 10%, transparent 0);
+    }
+
+    .bg-contact{
+        background-repeat: no-repeat;
+        background-size: 2.3rem;
+        background-position-y: 15%, 70%, 1%, 90%, 29%, 100%;
+        background-position-x: 90%, 2%, 95%, 17%, 99%, 6%;
+    }
+
+    .services-card .card-body{
+        grid-row:1;
+        grid-column: 2;
+    }
+
+    .card-img{
+        width: 16px;
+        height: 16px;
+    }
+    
+    .card-number:before{
+        content: '01';
+        /* width:20px; */
+        height: fit-content;
+        grid-row: 1;
+        grid-row-end: 2;
+        grid-column: 2;
+        justify-self: end;
+        text-align: end;
+        font-size: 10rem;
+        font-weight: 900;
+        line-height: 4rem;
+        z-index: 100;
+        @apply opacity-40 dark:opacity-20;
+        color: transparent;
+        text-shadow: -4.3px 3.3px 0 #a9b1f3;
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-color: #a9b1f3;
+    }
+
+    .input-date-focus:focus ~ .svg-date-focus{
+        @apply border-indigo-500;
+    }
+
+    .cell:not(.head){
+        @apply dark:bg-gray-800 dark:border-gray-900;
+    }
+
+    /* new */
+    .confirm_succ_msg p{
+        /* text-shadow: 0px 2px 3px #4f46e5; */
+    }
+
+};
+
+.icon{
+	transition: all .2s ease-in-out;
+}
+
+.icon.animate{
+	transform: rotate(180deg);
+}
+
+/* calendar */
+.calendar{
+	max-width: 80vw;
+	/*height: 60vh;*/
+	margin: 2rem auto;
+	display: grid;
+	grid-template-columns: repeat(8, minmax(0, 1fr));
+	grid-template-rows: repeat(17, minmax(0, 1fr));
+}
+
+.dayName{
+	grid-row: 1;
+}
+/*.dayName.row1.col1{
+	grid-column: 2;
+}*/
+.empty{
+	grid-row: 1;
+	grid-column: 1;
+}
+.hour{
+	grid-column: 1;
+	background-color: #f3f4f6;
+	border: 1px solid #99999952;
+}
+.head{
+	background-color: transparent;
+	border: none;
+}
+.hour, .head, .dayName{
+	padding: 0.5rem 0.2rem;
+	font-size: 0.875rem;
+}
+.hour span{
+	opacity: 0;
+}
+.hour:hover span{
+	opacity: 1;
+}
+.head span{
+	opacity: 1;
+}
+
+.col1{
+	grid-column: 1;
+}
+.col2{
+	grid-column: 2;
+}
+.col3{
+	grid-column: 3;
+}
+.col4{
+	grid-column: 4;
+}
+.col5{
+	grid-column: 5;
+}
+.col6{
+	grid-column: 6;
+}
+.col7{
+	grid-column: 7;
+}
+.col8{
+	grid-column: 8;
+}
+.col9{
+	grid-column: 9;
+}
+.row1{
+	grid-row: 1;
+}
+.row2{
+	grid-row: 2;
+}
+.row3{
+	grid-row: 3;
+}
+.row4{
+	grid-row: 4;
+}
+.row5{
+	grid-row: 5;
+}
+.row6{
+	grid-row: 6;
+}
+.row7{
+	grid-row: 7;
+}
+.row8{
+	grid-row: 8;
+}
+.row9{
+	grid-row: 9;
+}
+.row10{
+	grid-row: 10;
+}
+.row11{
+	grid-row: 11;
+}
+.row12{
+	grid-row: 12;
+}
+.row13{
+	grid-row: 13;
+}
+.row14{
+	grid-row: 14;
+}
+.row15{
+	grid-row: 15;
+}
+.row16{
+	grid-row: 16;
+}
+.row17{
+	grid-row: 17;
+}
