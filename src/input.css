@@ -87,7 +87,7 @@
     }
 
     .extra_elem{
-       @apply lg:w-full m-2 shadow-lg border-2 border-transparent hover:border-indigo-300 hover:shadow dark:hover:border-indigo-900 dark:shadow-gray-800
+       @apply sm:basis-1/2 md:basis-full sm:m-0 md:m-2 m-2 shadow-lg border-2 border-transparent hover:border-indigo-300 hover:shadow dark:hover:border-indigo-900 dark:shadow-gray-800
     }
 
     .extras-selected{
@@ -207,8 +207,7 @@
     }
     
     .card-number:before{
-        content: '01';
-        /* width:20px; */
+        content: attr(data-num-plc);
         height: fit-content;
         grid-row: 1;
         grid-row-end: 2;
@@ -280,7 +279,7 @@
 }
 .hour, .head, .dayName{
 	padding: 0.5rem 0.2rem;
-	font-size: 0.875rem;
+	@apply text-xs;
 }
 .hour span{
 	opacity: 0;

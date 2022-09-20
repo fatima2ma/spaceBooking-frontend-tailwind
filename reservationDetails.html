@@ -19,12 +19,12 @@
             <nav class="">
                 <div class="md:mt-8 flex justify-between items-center md:pt-8 sm:pt-0 sm:px-6 lg:px-8">
                     <!-- logo -->
-                    <a href="/">
+                    <a href="./">
                         <image src="./dist/images/logo-f7-ligth.svg" class="w-32 md:w-48 logo-img"/>
                     </a>
                     <!-- main nav -->
                     <div class="hidden md:flex">
-                        <a class='x-nav-item nav-item' href="/" active="request()->routeIs('home')">Home</a>
+                        <a class='x-nav-item nav-item' href="./" active="request()->routeIs('home')">Home</a>
                         <div class='x-ddown-flex'>
                             <a class='x-nav-item nav-item dropdownButton flex h-full' active="request()->is('*' . 'services' . '*')" class="dropdownButton flex h-full">
                                 <svg class='w-5 h-5 self-end order-2 icon' fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -62,7 +62,7 @@
                                 <div class="dropdownDivider hidden x-dropdown">
                                     <ul class="py-1" aria-labelledby="dropdownDividerButton">
                                         <li>
-                                            <a class="x-ddown-item" href="/">
+                                            <a class="x-ddown-item" href="./">
                                                 Dashboard
                                             </a>
                                         </li>
@@ -78,7 +78,7 @@
                                         </li>
                                     </ul>
                                     <div class="py-1">
-                                        <form method="POST" action="/logout">
+                                        <form method="POST">
                                             <button type="submit" class="text-sm hover:bg-gray-100 text-gray-700 w-full txt-align-unset block px-4 py-2 dark:text-gray-400 dark:hover:bg-gray-700">Logout</button>
                                         </form>
                                     </div>
@@ -111,7 +111,7 @@
                                 </button>
                             </div>
                             <div class="flex flex-col px-2 flex-grow flex-shrink-0 pb-3 space-y-1">
-                                <a class='x-nav-item nav-item' href="/" active="request()->routeIs('home')">Home</a>
+                                <a class='x-nav-item nav-item' href="./" active="request()->routeIs('home')">Home</a>
                                 <div class='x-ddown-flex'>
                                     <a class='x-nav-item nav-item dropdownButton flex' active="request()->is('*' . 'services' . '*')">
                                         <svg class='w-5 h-5 self-end order-2 icon' fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -139,7 +139,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <a class='x-nav-item nav-item' href="/contact" active="request()->is('contact')">contact us</a>
+                                    <a class='x-nav-item nav-item' href="./contact.html" active="request()->is('contact')">contact us</a>
                                 </div>
                                 <a href="#login-modal" class="py-2 text-base px-4 text-white font-medium bg-indigo-600 hover:bg-indigo-700 dark:text-gray-200 dark:bg-indigo-900 dark:hover:bg-indigo-800">Log in</a>
                             </div>
@@ -151,7 +151,7 @@
                             <div class='x-dropdown hidden dropdownDivider' auth="true">
                                 <ul class="py-1" aria-labelledby="dropdownDividerButton">
                                     <li>
-                                        <a class="x-ddown-item" href="/">
+                                        <a class="x-ddown-item" href="./">
                                             Dashboard
                                         </a>
                                     </li>
@@ -167,7 +167,7 @@
                                     </li>
                                 </ul>
                                 <div class="py-1">
-                                    <form method="POST" action="/logout">
+                                    <form method="POST">
                                         <button type="submit" class="text-sm hover:bg-gray-100 text-gray-700 w-full txt-align-unset block px-4 py-2 dark:text-gray-400 dark:hover:bg-gray-700">Logout</button>
                                     </form>
                                 </div>
@@ -502,7 +502,7 @@
             </div>
             <div class="flex flex-wrap">
                     <h3 class="hidden">No Services Available.</h3>
-                    <a class="extra_elem w-nm" data-extraId="{{$service->id}}" data-name="{{$service->name}}">
+                    <a class="extra_elem" data-extraId="{{$service->id}}" data-name="{{$service->name}}">
                         <div class="flex cursor-pointer items-center justify-between h-full lg:flex-row flex-col p-4 dark:text-gray-400">            
                             <div class="flex items-center min-w-max min-h-max w-32 h-28 lg:w-48 lg:h-28">
                                 <!-- <svg class="w-32 h-16 lg:w-48 lg:h-20" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2h-2.22l.123.489.804.804A1 1 0 0113 18H7a1 1 0 01-.707-1.707l.804-.804L7.22 15H5a2 2 0 01-2-2V5zm5.771 7H5V5h10v7H8.771z" clip-rule="evenodd"></path></svg> -->
@@ -519,7 +519,7 @@
                             </div>
                         </div>
                     </a>  
-                    <a class="extra_elem w-nm" data-booked="true" data-name="{{$service->name}}">
+                    <a class="extra_elem" data-booked="true" data-name="{{$service->name}}">
                         <div class="flex cursor-pointer items-center justify-between h-full lg:flex-row flex-col p-4 dark:text-gray-400">            
                             <div class="flex items-center min-w-max min-h-max w-32 h-28 lg:w-48 lg:h-28">
                                 <!-- <svg class="w-32 h-16 lg:w-48 lg:h-20" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2h-2.22l.123.489.804.804A1 1 0 0113 18H7a1 1 0 01-.707-1.707l.804-.804L7.22 15H5a2 2 0 01-2-2V5zm5.771 7H5V5h10v7H8.771z" clip-rule="evenodd"></path></svg> -->
